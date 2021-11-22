@@ -19,6 +19,9 @@ Le DM se répartir de la façon suivante :
 
 # Ligne de Commande
 
+Placez-vous dans le dossier annexe du dépôt avant d'exécuter les commandes suivantes.
+
+
 Tout d'abord on doit lancer le programme ampl pour exécuter notre code :
 
 ```bash
@@ -48,23 +51,25 @@ $ ampl: reset;
 
 ## EXO 1
 
-Pour exécuter le premier exercice, veuillez utiliser cette commande ci-dessous :
+Pour exécuter le code du modepremier exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo1.mod;
+$ ampl : model exo1.mod;
 ```
 
-et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
+Pour afficher la dispersion, on utilise la commande `display dispersion;`.
 
 ## EXO 2
 
-Pour exécuter le deuxieme exercice, veuillez utiliser cette commande ci-dessous :
+Pour exécuter le code du deuxième exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo2.mod;
+$ ampl : model exo2.mod;
 ```
+Voici les commandes pour :
 
-et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
+- Afficher la dispersion `display dispersion;`. 
+- Afficher les transistors exclus : `display transistor_est_pris;`
 
 ## EXO 3
 
@@ -72,14 +77,17 @@ Il n'y a pas de code ampl à faire.
 
 ## EXO 4
 
-Pour exécuter le quatrième exercice, veuillez utiliser cette commande ci-dessous :
+Pour exécuter le code du quatrième exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo4.mod;
+$ ampl : model exo4.mod;
 ```
 
-et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
+Voici les commandes pour :
 
+- Afficher la dispersion `display dispersion;`. 
+- Afficher les groupes de transistors : `display gtransistor;`
+- 
 ## EXO 5
 
-Pour la 5ème question nous ne l'avons pas encore fini
+Nous avons trop de contrainte le code pour cette question.
