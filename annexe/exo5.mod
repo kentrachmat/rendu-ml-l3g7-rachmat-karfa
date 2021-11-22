@@ -80,7 +80,7 @@ subject to contrainte_transistor_pair {val in TRANS} :
     sum {(p1,p2) in COUPLE} pair[val,p1,p2] = 1;
 
 /* Cette contrainte permet de vérifier si la dispersion est inférieure au DISPERSION_MAX */
-subject to contrainte_dispersion_max {(p1,p2) in COUPLE}:
+subject to contrainte_dispersion {(p1,p2) in COUPLE}:
     dispersion [p1,p2] <= DISPERSION_MAX;
 
 /* 
