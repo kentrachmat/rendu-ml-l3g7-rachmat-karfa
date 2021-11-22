@@ -13,7 +13,7 @@ Ce travail est à réaliser en équipe dont les membres sont (**groupe 7 du S5 L
 
 Le DM se répartir de la façon suivante :
 
-- Un dossier `annexe` contenant les fichiers `.ampl` correspondent aux modélisations sur AMPL numérotés par question.
+- Un dossier `annexe` contenant les fichiers `.mod` et `.dat` correspondent aux modélisations sur AMPL numérotés par question.
 
 - Le fichier `Rapport-KARFA-RACHMAT.pdf` est notre compte rendu de ce DM ([lien](https://gitlab-etu.fil.univ-lille1.fr/karfa/ml-dm-karfa-rachmat/-/blob/main/Rapport-KARFA-RACHMAT.md)).
 
@@ -51,7 +51,7 @@ $ ampl: reset;
 Pour exécuter le premier exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo1.ampl;
+$ ampl : model annexe/exo1.mod;
 ```
 
 et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
@@ -61,7 +61,7 @@ et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
 Pour exécuter le deuxieme exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo2.ampl;
+$ ampl : model annexe/exo2.mod;
 ```
 
 et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
@@ -75,7 +75,7 @@ Il n'y a pas de code ampl à faire.
 Pour exécuter le quatrième exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo4.ampl;
+$ ampl : model annexe/exo4.mod;
 ```
 
 et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
