@@ -92,4 +92,3 @@ option solver gurobi;
 data exo2.dat;
 solve;
 display dispersion, transistor_est_pris;
-reset;
