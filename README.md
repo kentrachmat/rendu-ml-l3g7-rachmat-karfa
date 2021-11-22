@@ -14,7 +14,6 @@ Ce travail est à réaliser en équipe dont les membres sont (**groupe 7 du S5 L
 ```
 .
 ├── README.md
-├── README.pdf
 ├── Rapport-KARFA-RACHMAT.md
 ├── Rapport-KARFA-RACHMAT.pdf
 └── annexe
