@@ -87,7 +87,7 @@ Voici les commandes pour :
 
 - Afficher la dispersion `display dispersion;`. 
 - Afficher les groupes de transistors : `display gtransistor;`
-- 
+
 ## EXO 5
 
 Nous avons trop de contrainte le code pour cette question.
