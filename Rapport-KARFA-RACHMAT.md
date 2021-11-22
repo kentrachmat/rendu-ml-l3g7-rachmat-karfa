@@ -213,11 +213,11 @@ V1)
 
 V2)
 
-- Pour minimiser les paquets on pourrait ensuite se concentrer que sur hfe ou que sur vbe, en triant les valeurs et en prenant la valeur la plus haute et la valeur la plus base pour le premier paquet, puis la 2e valeur la plus haute et la deuxième la plus basse sur un autre, cette manière de faire simplifie le problème et permet d'avoir des paquets de même longueurs.
+- Pour minimiser les paquets on pourrait se concentrer que sur hfe ou vbe en minimisant la valeur maximale d'un paquet, pour regrouper les paquets on pourrait prendre la valeur la plus haute et la valeur la plus base de l'ensemble des transistors pour le premier paquet, puis la 2e valeur la plus haute et la deuxième la plus basse sur un autre, cette manière de faire simplifie le problème et permet d'avoir des paquets de même longueurs.
 
 V3)
 
-- Une dernière solution est de minimiser la somme de la dispersion de chaque paquet et de regarder pour chaque paquet la dispersion sur VBE et HFE, pour regrouper les paquets nous allons séparer les transistors en trois groupes avec pour le premier groupe les X plus petites valeurs, pour le second les Y valeurs intermédiaires et pour le dernier groupe les Z transistor avec les valeurs les plus élevées, en faisant comme cela nous réduisons énormément la distance entre la valeur maximale et minimale de la dispersion de chaque paquet tout en ayant des paquets assez équivalents en dispersion, nous allons donc utiliser cette version.
+- Une dernière solution est de minimiser la somme de la dispersion de chaque paquet pour garder une dispersion totale basse, pour regrouper les paquets nous allons séparer les transistors en trois groupes avec pour le premier groupe les X plus petites valeurs de HFE ou VBE, pour le second les Y valeurs intermédiaires et pour le dernier groupe les T transistor avec les valeurs les plus élevées de hfe, en faisant comme cela nous réduisons énormément la distance entre la valeur maximale et minimale de la dispersion de chaque paquet tout en ayant des paquets assez équivalents en dispersion, nous allons donc utiliser cette version pour la suite des exercices.
 
 ## Question 4
 
