@@ -1,6 +1,4 @@
-# DM Les transistors d’Ornicar
-
-# Rapport
+# Rapport de DM Les transistors d’Ornicar
 
 ## Question
 
@@ -126,7 +124,7 @@ Elle correspond donc à la dispersion des gains `hfe`.
 
 ### Choix des paramètres et des variables
 
-Pour cette question nous nous sommes inspirée de l'annexe A. Dans l'annexe des étudiants pouvaient être affectés dans des créneaux avec une variable`est_affecte`. Cette problématique a beaucoup de points communs avec notre problème.
+Pour cette question nous nous sommes inspirée de l'annexe A. Dans l'annexe des étudiants pouvaient être affectés dans des créneaux avec une variable `est_affecte`. Cette problématique a beaucoup de points communs avec notre problème.
 
 Pour exclure certains transistors nous avons choisi de créer une nouvelle variable `transistor_est_pris` cette variable sera indicée par les transistors et aura donc deux valeurs possibles :
 
@@ -143,12 +141,12 @@ Une permettant d'exclure `E` transistors au maximum et une autre permettant d'ex
 
 Pour exclure les transistors nous utilisons donc la valeur de `transistor_est_pris`.
 
-    - Pour la recherche de `hfe_max` (et `vbe_max`) nous allons modifier la contrainte et ajouter seulement la multiplication de cette valeur par transistor_est_pris.
+- Pour la recherche de `hfe_max` (et `vbe_max`) nous allons modifier la contrainte et ajouter seulement la multiplication de cette valeur par transistor_est_pris.
 
-    ```
-    subject to contrainte_max_hfe {val in TRANS} :
-    max_hfe >= transistor_est_pris[val] * hfe[val];
-    ```
+```
+subject to contrainte_max_hfe {val in TRANS} :
+max_hfe >= transistor_est_pris[val] * hfe[val];
+```
 
 Si transistor est pris vaut 1 cela ne change pas le calcul (1 \* x = x). S'il n'est pas pris transistor est pris vaut 0 et le résultat sera de 0, la contrainte sera donc respectée de base qu'importe la valeur de hfe[val] et le maximum ne changera pas.
 
@@ -161,14 +159,14 @@ subject to contrainte_min_hfe {val in TRANS} :
 
 Avec ce nouveau calcul, l'expression de droite sera égale à MAXHFE dans le cas où le transistor est exclu, le minimum d'hfe ne changera pas.
 
-Il nous reste maintenant à trouver une contrainte permettant de n'exclure que `E` transistor, une idée pour cela est de faire la somme de (1 - la valeur transistor_est_pris) de chaque transistor 
+Il nous reste maintenant à trouver une contrainte permettant de n'exclure que `E` transistor, une idée pour cela est de faire la somme de (1 - la valeur transistor_est_pris) de chaque transistor
 
 ```
 subject to contrainte_nb_max_exclusion:
     sum {val in TRANS} (1 - transistor_est_pris[val]) <= E;
 ```
 
-Pour cet exercice on pouvait aussi inverser la valeur de `transistor_est_pris` et avoir une variable qui s'appellerai  `transistor_est_exclu` à la place, les calculs seraient donc un peu différents mais le programme serait globalement le même. Nous avons choisi d'avoir une variable `transistor_est_pris`  car cela était plus naturel pour nous.
+Pour cet exercice on pouvait aussi inverser la valeur de `transistor_est_pris` et avoir une variable qui s'appellerai `transistor_est_exclu` à la place, les calculs seraient donc un peu différents mais le programme serait globalement le même. Nous avons choisi d'avoir une variable `transistor_est_pris` car cela était plus naturel pour nous.
 
 ### Résultat et conclusion
 
@@ -193,34 +191,38 @@ T12 1   T16 0    T2 1   T23 1   T27 1   T30 0    T5 1    T9 1
 On a obtenu la dispersion (`0.5666726417`) ce qui est inférieur à la première question avec une différence de `0.085246285`
 Les transistors qui ont été exclus sont `T11, T16, T30, T31`.
 
- | T   |    HFE      |  VBE    |
- | --  | --          |      -- |
- |T11  | 473.747183  |0.620745 |
- |T16  | 477.658861  |0.673297 |
- |T30  |480.551455   |0.530568 |
- |T31  |446.039682   |0.584432 |
+| T   | HFE        | VBE      |
+| --- | ---------- | -------- |
+| T11 | 473.747183 | 0.620745 |
+| T16 | 477.658861 | 0.673297 |
+| T30 | 480.551455 | 0.530568 |
+| T31 | 446.039682 | 0.584432 |
 
 On constate que les transistors avec les valeurs les plus extrêmes (ici en HFE ) ont ont été exclus.
 Cela est logique car pour obtenir la dispersion on soustrait la valeur maximale et minimale qu'on divise par un paramètre. Donc pour minimiser la valeur de la dispersion Gurobi va exclure les valeurs les plus extrêmes, ici les valeurs maximales sont les valeurs les plus éloignées des autres valeurs, ce sont donc ces transistors qui vont être exclus.
 
 dans le cas où il existe plusieurs valeurs différentes, la dispersion obtenue ne peut être que plus grande qu'à la question précédente car en éliminant certains transistors on ne peut que diminuer la distance entre ces derniers.
 
-## Question 3 
+## Question 3
 
-Pour cette question il va falloir trouver un critère permettant de séparer les transistors en plusieurs paquets voici les différentes solutions que nous avons trouvées : 
+Pour cette question il va falloir trouver un critère permettant de séparer les transistors en plusieurs paquets voici les différentes solutions que nous avons trouvées :
 
 V1)
+
 - première version, on pourrait trier en fonction du type de transistor, PNP ou NPN, le problème est qu'il n'y a que deux types de transistors pour 3 paquets, et en fonctionnant comme cela on pourrait avoir des paquets inégalement repartis et avoir une grande dispersion sur un paquet et une petite sur un autre, cette méthode a donc beaucoup trop d'inconvénient.
 
-V2) 
+V2)
+
 - Pour minimiser les paquets on pourrait ensuite se concentrer que sur hfe ou que sur vbe, en triant les valeurs et en prenant la valeur la plus haute et la valeur la plus base pour le premier paquet, puis la 2e valeur la plus haute et la deuxième la plus basse sur un autre, cette manière de faire simplifie le problème et permet d'avoir des paquets de même longueurs.
 
 V3)
+
 - Une dernière solution est de minimiser la somme de la dispersion de chaque paquet et de regarder pour chaque paquet la dispersion sur VBE et HFE, pour regrouper les paquets nous allons séparer les transistors en trois groupes avec pour le premier groupe les X plus petites valeurs, pour le second les Y valeurs intermédiaires et pour le dernier groupe les Z transistor avec les valeurs les plus élevées, en faisant comme cela nous réduisons énormément la distance entre la valeur maximale et minimale de la dispersion de chaque paquet tout en ayant des paquets assez équivalents en dispersion, nous allons donc utiliser cette version.
 
-## Question 4 
+## Question 4
 
 ### Choix des paramètres et des variables
+
 Pour diviser les transistors par groupes, nous avons donc besoin d'un paramètre `P` qui représentera le nombre de paquets. Nous avons aussi besoin d'un ensemble de paquets que nous nommons GROUP, finalement nous aurons besoin du nombre total de transistor, pour indiquer combien de transistor doit-il y avoir par paquets (nous verrons cela plus précisément dans la prochaine section).
 
 Les valeurs maximales et minimales des transistors seront maintenant indicées par le groupe exemple :<br/>
@@ -243,7 +245,7 @@ Nous avons pensé à trois grandes contraintes pour pouvoir résoudre il faudrai
 
 Modélisation :
 
-Dans le même état d'esprit que `est_exclu` une expression permet de séparer les transistors dans des groupes en multipliant la valeur du transistor(hfe / vbe) par `gtransistor`. 
+Dans le même état d'esprit que `est_exclu` une expression permet de séparer les transistors dans des groupes en multipliant la valeur du transistor(hfe / vbe) par `gtransistor`.
 
 ```
 subject to contrainte_max_hfe {g in GROUP, val in TRANS}  :
@@ -257,14 +259,13 @@ subject to contrainte_max_vbe {g in GROUP, val in TRANS} :
     max_vbe [g] >= gtransistor[g,val] * vbe[val];
 ```
 
-Pour fixer un transistor dans un groupe, il faut vérifier que la somme gtransistor[g,val] pour chaque groupe soit égal à 1. 
+Pour fixer un transistor dans un groupe, il faut vérifier que la somme gtransistor[g,val] pour chaque groupe soit égal à 1.
 
 Il existe différents moyens de vérifier que les groupes ont un nombre de transistors égale. Par exemple en contraignant le nombre de transistors d'un paquet à être plus petit que le cardinal de l'ensemble des paquets par le nombre de paquets + 1.
 
 ### Résultat et conclusion
 
 à partir des données ci-dessous, nous pouvons voir que le deuxième groupe a la dispersion la plus faible et le troisième à la plus grande dispersion, bien que ce dernier à une dispersion un peu différente la dispersion reste globalement la même avec comme avantage d'avoir une dispersion basse.
-
 
 ```bash
 ampl: model annexe/exo4.ampl
@@ -314,6 +315,8 @@ T8    1   0   0
 T9    0   0   1;
 ```
 
-Cette solution permet donc de réduire la dispersion totale, qui passe à 0.5818244 sans pour autant exclure un certain nombre de transistors.
+Cette solution permet donc de réduire la dispersion totale, qui passe à `0.5818244` sans pour autant exclure un certain nombre de transistors.
 
 ## Question 5
+
+On ne peut pas de résoudre le code ampl. en fait le contraintes peut être réduite mais la variable et la contrainte dans cet version de ampl est limitée

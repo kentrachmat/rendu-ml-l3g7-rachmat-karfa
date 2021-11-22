@@ -15,7 +15,7 @@ Le DM se répartir de la façon suivante :
 
 - Un dossier `annexe` contenant les fichiers `.ampl` correspondent aux modélisations sur AMPL numérotés par question.
 
-- Le fichier Rapport-KARFA-RACHMAT.pdf est notre compte rendu de ce DM ([lien](https://gitlab-etu.fil.univ-lille1.fr/karfa/ml-dm-karfa-rachmat/-/blob/main/Rapport-KARFA-RACHMAT.md)).
+- Le fichier `Rapport-KARFA-RACHMAT.pdf` est notre compte rendu de ce DM ([lien](https://gitlab-etu.fil.univ-lille1.fr/karfa/ml-dm-karfa-rachmat/-/blob/main/Rapport-KARFA-RACHMAT.md)).
 
 # Ligne de Commande
 
@@ -44,32 +44,42 @@ Et enfin pour réinitialiser le code/pour lancer une autre modélisation il faut
 $ ampl: reset;
 ```
 
-# EXERCICES POUR LE DM
+# EXERCICES
 
 ## EXO 1
 
 Pour exécuter le premier exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo1.ampl
+$ ampl : model annexe/exo1.ampl;
 ```
 
-et pour afficher une variable par exemple, on peut utiliser `display hfe`, etc.
+et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
 
 ## EXO 2
 
 Pour exécuter le deuxieme exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo2.ampl
+$ ampl : model annexe/exo2.ampl;
 ```
 
-et pour afficher une variable par exemple, on peut utiliser `display hfe`, etc.
+et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
+
+## EXO 3
+
+Il n'y a pas de code ampl à faire.
 
 ## EXO 4
 
 Pour exécuter le quatrième exercice, veuillez utiliser cette commande ci-dessous :
 
 ```bash
-$ ampl : model annexe/exo4.ampl
+$ ampl : model annexe/exo4.ampl;
 ```
+
+et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
+
+## EXO 5
+
+Pour la 5ème question nous ne l'avons pas encore fini
