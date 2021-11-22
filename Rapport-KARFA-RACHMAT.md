@@ -319,4 +319,18 @@ Cette solution permet donc de réduire la dispersion totale, qui passe à `0.581
 
 ## Question 5
 
-On ne peut pas de résoudre le code ampl. en fait le contraintes peut être réduite mais la variable et la contrainte dans cet version de ampl est limitée
+Pour la question 5 il s'agit maintenant de ne plus découper les transistors en paquet. à la place on veut avoir des pairs de transistor, une solution est alors d'affectés deux transistors dans une paire :
+
+```
+subject to exactement_deux_transistor_ensemble {p in PAIR} :
+    sum {t in TRANS} gtransistor[p,t] = 2;
+```
+
+Pour le critère ici l'objectif est différent, Nous avons choisi de maximiser la somme des transistors affectés dans une paire, en effet on ne cherche plus à maximiser la dispersion en priorité, la quantité prime donc sur la qualité. il faut aussi penser à gérer la dispersion des paquets, chaque paquet doit avoir une dispersion inférieure ou égale à 0.12 il faut donc ajouter une contrainte pour cela :
+
+```
+subject to dispersion_minimum :
+    sum {p in PAIR} dispersion[p] >= 0.12;
+```
+
+Une des difficultés majeures a été de gérer la modélisation avec un minimum de contraintes, mais nous n'avons pas réussi à résoudre cette contrainte néanmoins nous comprenons notre erreur notre modélisation n'est pas assez performante pour pouvoir gérer les différents critères. Même en étant bloqué nous comprenons l'idée générale de cette question.
