@@ -90,4 +90,4 @@ Voici les commandes pour :
 
 ## EXO 5
 
-Nous avons trop de contrainte le code pour cette question.
+Nous avons trop de contrainte le code pour cette question. Le code n'est donc pas exploitable, nous avons tout de même laissé le code et expliqué dans le rapport tout ce que nous avons compris pour cet exercice.
