@@ -9,6 +9,27 @@ Ce travail est à réaliser en équipe dont les membres sont (**groupe 7 du S5 L
 - BENEDICTUS KENT **RACHMAT**
 - HICHEM **KARFA**
 
+# Arborescence du projet
+
+```
+.
+├── README.md
+├── README.pdf
+├── Rapport-KARFA-RACHMAT.md
+├── Rapport-KARFA-RACHMAT.pdf
+└── annexe
+    ├── exo1.dat
+    ├── exo1.mod
+    ├── exo2.dat
+    ├── exo2.mod
+    ├── exo4.dat
+    ├── exo4.mod
+    ├── exo5.dat
+    └── exo5.mod
+
+1 directory, 12 files
+```
+
 # Organisation du fichier
 
 Le DM se répartir de la façon suivante :
@@ -83,3 +104,11 @@ et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.
 ## EXO 5
 
 Pour la 5ème question nous ne l'avons pas encore fini
+
+Pour exécuter le cinquième exercice, veuillez utiliser cette commande ci-dessous :
+
+```bash
+$ ampl : model annexe/exo5.mod;
+```
+
+et pour afficher une variable par exemple, on peut utiliser `display hfe;`, etc.

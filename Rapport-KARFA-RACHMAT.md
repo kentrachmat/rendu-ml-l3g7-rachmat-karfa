@@ -213,11 +213,11 @@ V1)
 
 V2)
 
-- Pour minimiser les paquets on pourrait ensuite se concentrer que sur hfe ou que sur vbe, en triant les valeurs et en prenant la valeur la plus haute et la valeur la plus base pour le premier paquet, puis la 2e valeur la plus haute et la deuxième la plus basse sur un autre, cette manière de faire simplifie le problème et permet d'avoir des paquets de même longueurs.
+- Pour minimiser les paquets on pourrait se concentrer que sur hfe ou vbe en minimisant la valeur maximale d'un paquet, pour regrouper les paquets on pourrait prendre la valeur la plus haute et la valeur la plus base de l'ensemble des transistors pour le premier paquet, puis la 2e valeur la plus haute et la deuxième la plus basse sur un autre, cette manière de faire simplifie le problème et permet d'avoir des paquets de même longueurs.
 
 V3)
 
-- Une dernière solution est de minimiser la somme de la dispersion de chaque paquet et de regarder pour chaque paquet la dispersion sur VBE et HFE, pour regrouper les paquets nous allons séparer les transistors en trois groupes avec pour le premier groupe les X plus petites valeurs, pour le second les Y valeurs intermédiaires et pour le dernier groupe les Z transistor avec les valeurs les plus élevées, en faisant comme cela nous réduisons énormément la distance entre la valeur maximale et minimale de la dispersion de chaque paquet tout en ayant des paquets assez équivalents en dispersion, nous allons donc utiliser cette version.
+- Une dernière solution est de minimiser la somme de la dispersion de chaque paquet pour garder une dispersion totale basse, pour regrouper les paquets nous allons séparer les transistors en trois groupes avec pour le premier groupe les X plus petites valeurs de HFE ou VBE, pour le second les Y valeurs intermédiaires et pour le dernier groupe les T transistor avec les valeurs les plus élevées de hfe, en faisant comme cela nous réduisons énormément la distance entre la valeur maximale et minimale de la dispersion de chaque paquet tout en ayant des paquets assez équivalents en dispersion, nous allons donc utiliser cette version pour la suite des exercices.
 
 ## Question 4
 
@@ -315,8 +315,38 @@ T8    1   0   0
 T9    0   0   1;
 ```
 
+Nous avons organisé et trié les groupes par ordre croissant pour mieux visualiser le résultat :
+
+| Groupe 1 (Valeurs plus élevées ) | Groupe 2 (Valeurs plus basse ) | Groupe 3       |
+| -------------------------------- | ------------------------------ | -------------- |
+| T15 380.631659                   | T13 89.400099                  | T9 220.125258  |
+| T3 388.349744                    | T10 101.105138                 | T28 230.998222 |
+| T22 392.307125                   | T26 121.435795                 | T32 242.383656 |
+| T19 400.910157                   | T18 131.327049                 | T24 250.582394 |
+| T12 414.865893                   | T21 131.701247                 | T29 304.763147 |
+| T27 423.506906                   | T25 156.313272                 | T6 330.622531  |
+| T8 429.403684                    | T5 159.318987                  | T14 338.676073 |
+| T31 446.039682                   | T7 160.220311                  | T4 345.246256  |
+| T11 473.747183                   | T23 164.524036                 | T20 354.565503 |
+| T16 477.658861                   | T2 172.445927                  | T1 369.713399  |
+| T30 480.551455                   | T17 188.986802                 |                |
+
 Cette solution permet donc de réduire la dispersion totale, qui passe à `0.5818244` sans pour autant exclure un certain nombre de transistors.
 
 ## Question 5
 
-On ne peut pas de résoudre le code ampl. en fait le contraintes peut être réduite mais la variable et la contrainte dans cet version de ampl est limitée
+Pour la question 5 il s'agit maintenant de ne plus découper les transistors en paquet. à la place on veut avoir des pairs de transistor, une solution est alors d'affectés deux transistors dans une paire :
+
+```
+subject to exactement_deux_transistor_ensemble {p in PAIR} :
+    sum {t in TRANS} gtransistor[p,t] = 2;
+```
+
+Pour le critère ici l'objectif est différent, Nous avons choisi de maximiser la somme des transistors affectés dans une paire, en effet on ne cherche plus à maximiser la dispersion en priorité, la quantité prime donc sur la qualité. il faut aussi penser à gérer la dispersion des paquets, chaque paquet doit avoir une dispersion inférieure ou égale à 0.12 il faut donc ajouter une contrainte pour cela :
+
+```
+subject to dispersion_minimum :
+    sum {p in PAIR} dispersion[p] >= 0.12;
+```
+
+Une des difficultés majeures a été de gérer la modélisation avec un minimum de contraintes, mais nous n'avons pas réussi à résoudre cette contrainte néanmoins nous comprenons notre erreur notre modélisation n'est pas assez performante pour pouvoir gérer les différents critères. Même en étant bloqué nous comprenons l'idée générale de cette question.
